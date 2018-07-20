@@ -1,0 +1,8 @@
+# Complete the findMax function below.
+def findMax(inputArray):
+    sumOfGlass = []
+    for i in range(0,len(inputArray)-2):
+        for j in range(0,len(inputArray)-2):
+            adder = inputArray[i][j] + inputArray[i][j+1] + inputArray[i][j+2] + inputArray[i+1][j+1] + inputArray[i+2][j] + inputArray[i+2][j+1] + inputArray[i+2][j+2]
+            sumOfGlass.append(adder)
+    return max(sumOfGlass)
