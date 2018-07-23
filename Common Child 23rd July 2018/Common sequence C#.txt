@@ -1,0 +1,97 @@
+using System.CodeDom.Compiler;
+using System.Collections.Generic;
+using System.Collections;
+using System.ComponentModel;
+using System.Diagnostics.CodeAnalysis;
+using System.Globalization;
+using System.IO;
+using System.Linq;
+using System.Reflection;
+using System.Runtime.Serialization;
+using System.Text.RegularExpressions;
+using System.Text;
+using System;
+
+class Solution {
+   
+    static int check (string s1, string s2)
+    {
+         string s3 = "";
+        int a =0;
+        Console.WriteLine(s1);
+        Console.WriteLine(s2);
+        for(int i = 0; i<s2.Length; i++)
+        {
+ 
+            for(int j = a;j<s1.Length; j++)
+            {
+                if(s2[i]==s1[j])
+                {
+                   s3 = s3+s2[i];
+                    a = j;
+                    break;
+                }
+            }
+        }
+        string s4="";
+        a = 0;
+        
+           for(int i = 0; i<s1.Length; i++)
+        {
+          
+            for(int j = a;j<s2.Length; j++)
+            {
+                if(s1[i]==s2[j])
+                {
+                   s4 = s4+s2[i];
+                    a = j;
+                    break;
+                }
+            }
+        }
+        
+        
+        Console.WriteLine(s3);
+        if(s3.Length>s4.Length)
+            return s4.Length;
+        if(s3.Length<s4.Length)
+            return s3.Length;
+        return s3.Length;
+    }
+
+    // Complete the commonChild function below.
+    static int commonChild(string s1, string s2) {
+        int a = s1.Length;
+        int b = s2.Length;
+        int d = 0;
+        
+        if(s1.Length>s2.Length)
+        {
+            return check(s1,s2);
+        }
+        else if(s2.Length>s1.Length)
+        {
+            return check(s2,s1);
+        }
+        else
+        {
+            return check(s2,s1);
+        }
+        return 0;
+    }
+
+    static void Main(string[] args) {
+        TextWriter textWriter = new StreamWriter(@System.Environment.GetEnvironmentVariable("OUTPUT_PATH"), true);
+
+        string s1 = Console.ReadLine();
+
+        string s2 = Console.ReadLine();
+
+        int result = commonChild(s1, s2);
+
+        textWriter.WriteLine(result);
+
+        textWriter.Flush();
+        textWriter.Close();
+    }
+}
