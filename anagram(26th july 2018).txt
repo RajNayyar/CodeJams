@@ -1,0 +1,64 @@
+using System;
+using System.Collections.Generic;
+using System.Text;
+
+namespace Codejam
+{
+    
+    class Anagrams
+    {
+        public string Gosort(string s)
+        {
+            char[] chara = s.ToCharArray();
+            Array.Sort(chara);
+            return string.Join("",chara);
+        }
+     
+
+        int GetMaximumSubset(string[] words)
+        {
+            List<string> s3 = new List<string> ();
+           // int d = 0;
+            //string[] s3 = new string[100];
+            for (int i=0;i<words.Length;i++)
+            {
+                words[i] = Gosort(words[i]);
+            }
+            int count = 0;
+            for(int j = 0;j<words.Length;j++)
+            {
+                if(words[j]=="0")
+                {
+                    continue;
+                }
+                for(int k=j+1;k<words.Length;k++)
+                {
+                    if(words[j]==words[k] && words[k]!="0")
+                    {
+                        words[k] = "0";
+                    }
+                }
+
+                s3.Add(words[j]);
+              
+            }
+       
+            return s3.Count;
+        }
+
+        #region Testing code Do not change
+        public static void Main(String[] args)
+        {
+            String input = Console.ReadLine();
+            Anagrams anagramSolver = new Anagrams();
+            do
+            {
+                string[] words = input.Split(',');
+                Console.WriteLine(anagramSolver.GetMaximumSubset(words));
+                input = Console.ReadLine();
+            } while (input != "-1");
+        }
+        #endregion
+    }
+}
+
